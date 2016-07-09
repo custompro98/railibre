@@ -9,9 +9,9 @@ default: &default
   pool: 5
   timeout: 5000
 
-calibre: 
+calibre:
   adapter: sqlite3
-  database: db/metadata.db
+  database: db/metadata.sqlite3
 
 development:
   <<: *default
