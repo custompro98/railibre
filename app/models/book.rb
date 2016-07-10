@@ -5,4 +5,8 @@ class Book < ApplicationRecord
       join_table: "books_authors_link",
       foreign_key: "book",
       association_foreign_key: "author"
+
+  def author
+    self.authors[0]
+  end
 end

@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Author</td>
+      <td><!-- More info --></td>
+      <td><!-- Download --></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.author.name %></td>
+        <td><%= button_to "More info", books_path, method: :get %>
+        <td><%= button_to "Download", "#" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
