@@ -12,7 +12,7 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.author.name %></td>
-        <td><%= button_to "More info", books_path, method: :get %>
+        <td><%= button_to "More info", book, method: :get %>
         <td><%= button_to "Download", "#" %></td>
       </tr>
     <% end %>
