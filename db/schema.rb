@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.text     "sort"
     t.datetime "timestamp"
     t.datetime "pubdate"
-    t.         "series_index",  default: "1.0",                 null: false
+    t.float    "series_index",  default: "1.0",                 null: false
     t.text     "author_sort"
     t.text     "isbn",          default: ""
     t.text     "lccn",          default: ""
     t.text     "path",          default: "",                    null: false
     t.integer  "flags",         default: 1,                     null: false
     t.text     "uuid"
-    t.         "has_cover",     default: "0"
+    t.boolean  "has_cover",     default: "0"
     t.datetime "last_modified", default: '2000-01-01 00:00:00', null: false
     t.index ["author_sort"], name: "authors_idx"
     t.index ["sort"], name: "books_idx"
@@ -113,11 +113,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "label",                          null: false
     t.text "name",                           null: false
     t.text "datatype",                       null: false
-    t.     "mark_for_delete", default: "0",  null: false
-    t.     "editable",        default: "1",  null: false
+    t.boolean "mark_for_delete", default: "0",  null: false
+    t.boolean "editable",        default: "1",  null: false
     t.text "display",         default: "{}", null: false
-    t.     "is_multiple",     default: "0",  null: false
-    t.     "normalized",                     null: false
+    t.boolean "is_multiple",     default: "0",  null: false
+    t.bolean "normalized",                     null: false
     t.index ["label"], name: "custom_columns_idx"
     t.index ["label"], name: "sqlite_autoindex_custom_columns_1", unique: true
   end

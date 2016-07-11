@@ -1,0 +1,13 @@
+<h2><%= @book.title %></h2>
+<table>
+  <tr>
+    <th>Author:</th>
+    <td><%= @book.author.name %></td>
+  </tr>
+    <th>Published:</th>
+    <td><%= @book.date_published %></td>
+  <tr>
+    <td><%= button_to "Delete", "#" %>
+    <td><%= button_to "Download", "#" %>
+  </tr>
+</table>

@@ -42,3 +42,6 @@ bower.json
 .byebug_history
 
 calibre-library/
+
+.DS_Store
+db/metadata.db

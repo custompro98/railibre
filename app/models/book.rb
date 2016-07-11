@@ -9,4 +9,8 @@ class Book < ApplicationRecord
   def author
     self.authors[0]
   end
+
+  def date_published
+    self.pubdate.strftime("%B %d, %Y")
+  end
 end
