@@ -41,7 +41,7 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
-calibre-library/
+public/calibre-library
 
 .DS_Store
 db/metadata.db

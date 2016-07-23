@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show]
 
   root 'books#index'
+
+  get 'download/:id', to: 'files#download', as: 'download'
 end
