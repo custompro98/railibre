@@ -8,6 +8,6 @@
     <td><%= @book.date_published %></td>
   <tr>
     <td><%= button_to "Delete", "#", class: 'btn btn-danger' %>
-    <td><%= button_to "Download", "#", class: 'btn btn-primary' %>
+    <td><%= button_to "Download", download_path(id: @book.id), method: :get, class: 'btn btn-primary' %>
   </tr>
 </table>
