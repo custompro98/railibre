@@ -1,4 +1,4 @@
-<table>
+<table class="table table-condensed">
   <thead>
     <tr>
       <td>Title</td>
@@ -12,8 +12,8 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.author.name %></td>
-        <td><%= button_to "More info", book, method: :get %>
-        <td><%= button_to "Download", download_path(id: book.id), method: :get %></td>
+        <td><%= button_to "More info", book, method: :get, class: 'btn btn-secondary' %></td>
+        <td><%= button_to "Download", download_path(id: book.id), method: :get, class: 'btn btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>

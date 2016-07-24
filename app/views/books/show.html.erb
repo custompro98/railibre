@@ -1,5 +1,5 @@
 <h2><%= @book.title %></h2>
-<table>
+<table class='table table-condensed'>
   <tr>
     <th>Author:</th>
     <td><%= @book.author.name %></td>
@@ -7,7 +7,7 @@
     <th>Published:</th>
     <td><%= @book.date_published %></td>
   <tr>
-    <td><%= button_to "Delete", "#" %>
-    <td><%= button_to "Download", "#" %>
+    <td><%= button_to "Delete", "#", class: 'btn btn-danger' %>
+    <td><%= button_to "Download", "#", class: 'btn btn-primary' %>
   </tr>
 </table>
