@@ -14,8 +14,7 @@ RSpec.describe FilesController, type: :controller do
 
     context "file path loaded" do
       it "downloads the book" do
-        book = create(:book, id: 1, path: 'Pride and Prejudice')
-        book.path = 'Pride and Prejudice'
+        book = create(:book)
 
         get :download, { id: book.id }
 

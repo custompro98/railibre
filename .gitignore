@@ -45,3 +45,4 @@ public/calibre-library
 
 .DS_Store
 db/metadata.db
+public

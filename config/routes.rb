@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   root 'books#index'
 
-  get 'download/:id', to: 'files#download', as: 'download'
+  get  'files',        to: 'files#index',    as: 'book_upload'
+  post 'upload',       to: 'files#upload',   as: 'upload'
+  get  'download/:id', to: 'files#download', as: 'download'
 end

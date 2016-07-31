@@ -1,0 +1,4 @@
+<%= form_tag({controller: :files, action: :upload}, multipart: true, format: :ascii) do %>
+  <%= file_field_tag 'ebook' %>
+  <%= submit_tag 'Submit' %>
+<% end %>
