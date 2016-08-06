@@ -1,13 +1,22 @@
 <h2><%= @book.title %></h2>
-<table class='table table-condensed'>
-  <tr>
-    <th>Author:</th>
-    <td><%= @book.author.name %></td>
-  </tr>
-    <th>Published:</th>
-    <td><%= @book.date_published %></td>
-  <tr>
-    <td><%= button_to "Delete", "#", class: 'btn btn-danger' %>
-    <td><%= button_to "Download", download_path(id: @book.id), method: :get, class: 'btn btn-primary' %>
-  </tr>
-</table>
+<div class="col-xs-4">
+  <% if @book.has_cover? %>
+    <%=h image_tag @book.cover_path, size: '300x400', alt: 'Book cover' %>
+  <% else %>
+    <h3>No image found</h3>
+  <% end %>
+</div>
+<div class="col-xs-8">
+  <table class='table table-condensed'>
+    <tr>
+      <th>Author:</th>
+      <td><%= @book.author.name %></td>
+    </tr>
+      <th>Published:</th>
+      <td><%= @book.date_published %></td>
+    <tr>
+      <td><%= button_to "Delete", "#", class: 'btn btn-danger' %></td>
+      <td><%= button_to "Download", download_path(id: @book.id), method: :get, class: 'btn btn-primary' %></td>
+    </tr>
+  </table>
+</div>
