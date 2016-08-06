@@ -32,22 +32,22 @@ class FilesController < ApplicationController
 
   def download_book_with_id(book_id)
     file = BookFile.find_by("book = ?", book_id)
-    path = File.join(calibre_path, book_path(file))
+    download_path = File.join(calibre_path, book_path(file))
 
-    send_file path
+    send_file download_path
   end
 
   def write_file(uploaded_io)
     file_content = uploaded_io.tempfile.read
     file_content.force_encoding('UTF-8')
 
-    book_path = File.join(upload_path, uploaded_io.original_filename)
+    write_path = File.join(upload_path, uploaded_io.original_filename)
 
-    File.open(book_path, 'w') do |file|
+    File.open(write_path, 'w') do |file|
       file.write(file_content)
     end
 
-    book_path
+    write_path
   end
 
   def add_book_to_calibre_library(book_path)
@@ -62,8 +62,8 @@ class FilesController < ApplicationController
 
   private
 
-  def book_path(ebook_file)
-    File.join("#{ebook_file.book.path}", "#{ebook_file.name}.#{ebook_file.format}")
+  def book_path(book_file)
+    File.join("#{book_file.book.path}", "#{book_file.name}.#{book_file.format}")
   end
 
   def calibre_path
