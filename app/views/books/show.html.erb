@@ -1,7 +1,7 @@
 <h2><%= @book.title %></h2>
 <div class="col-xs-4">
   <% if @book.has_cover? %>
-    <%=h image_tag @book.cover_path, size: '300x400', alt: 'Book cover' %>
+    <%=h image_tag @book.cover_path, size: '300x400', alt: "#{@book.title}'s cover" %>
   <% else %>
     <h3>No image found</h3>
   <% end %>
