@@ -5,6 +5,16 @@ class FilesController < ApplicationController
     # Displays the form
   end
 
+  def delete
+    if remove_book_from_calibre_library(params[:id])
+      flash.notice = "Book removed from the Calibre Library successfully."
+    else
+      flash.alert = "Book was not removed from the Calibre Library."
+    end
+
+    redirect_to root_path
+  end
+
   def download
     begin
       download_book_with_id(params[:id])
@@ -20,7 +30,7 @@ class FilesController < ApplicationController
     book_path = write_file(uploaded_io)
 
     if add_book_to_calibre_library(book_path)
-      flash.notice = "Book added to the Calibre library successfully"
+      flash.notice = "Book added to the Calibre library successfully."
     else
       flash.alert = "Book not added to the Calibre library."
     end
@@ -50,6 +60,8 @@ class FilesController < ApplicationController
     write_path
   end
 
+  private
+
   def add_book_to_calibre_library(book_path)
     if OS.mac?
       system("/Applications/calibre.app/Contents/MacOS/calibredb add #{Shellwords.escape(book_path)} --library-path #{calibre_path}")
@@ -60,7 +72,15 @@ class FilesController < ApplicationController
     end
   end
 
-  private
+  def remove_book_from_calibre_library(book_id)
+    if OS.mac?
+      system("/Applications/calibre.app/Contents/MacOS/calibredb remove #{book_id} --library-path #{calibre_path}")
+    elsif OS.linux?
+      system("calibredb remove #{book_id} --library-path #{calibre_path}")
+    else
+      false
+    end
+  end
 
   def book_path(book_file)
     File.join("#{book_file.book.path}", "#{book_file.name}.#{book_file.format}")

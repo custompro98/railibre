@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get  'files',        to: 'files#index',    as: 'book_upload'
   post 'upload',       to: 'files#upload',   as: 'upload'
   get  'download/:id', to: 'files#download', as: 'download'
+  get  'delete/:id',   to: 'files#delete',   as: 'delete'
 end

@@ -15,7 +15,7 @@
       <th>Published:</th>
       <td><%= @book.date_published %></td>
     <tr>
-      <td><%= button_to "Delete", "#", class: 'btn btn-danger' %></td>
+      <td><%= button_to "Delete", delete_path(id: @book.id), method: :get, class: 'btn btn-danger' %></td>
       <td><%= button_to "Download", download_path(id: @book.id), method: :get, class: 'btn btn-primary' %></td>
     </tr>
   </table>
