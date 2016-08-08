@@ -40,11 +40,31 @@ class FilesController < ApplicationController
 
   private
 
+  def add_book_to_calibre_library(book_path)
+    if OS.mac?
+      system("/Applications/calibre.app/Contents/MacOS/calibredb add #{Shellwords.escape(book_path)} --library-path #{calibre_path}")
+    elsif OS.linux?
+      system("calibredb add #{Shellwords.escape(book_path)} --library-path #{calibre_path}")
+    else
+      false
+    end
+  end
+
   def download_book_with_id(book_id)
     file = BookFile.find_by("book = ?", book_id)
     download_path = File.join(calibre_path, book_path(file))
 
     send_file download_path
+  end
+
+  def remove_book_from_calibre_library(book_id)
+    if OS.mac?
+      system("/Applications/calibre.app/Contents/MacOS/calibredb remove #{book_id} --library-path #{calibre_path}")
+    elsif OS.linux?
+      system("calibredb remove #{book_id} --library-path #{calibre_path}")
+    else
+      false
+    end
   end
 
   def write_file(uploaded_io)
@@ -58,28 +78,6 @@ class FilesController < ApplicationController
     end
 
     write_path
-  end
-
-  private
-
-  def add_book_to_calibre_library(book_path)
-    if OS.mac?
-      system("/Applications/calibre.app/Contents/MacOS/calibredb add #{Shellwords.escape(book_path)} --library-path #{calibre_path}")
-    elsif OS.linux?
-      system("calibredb add #{Shellwords.escape(book_path)} --library-path #{calibre_path}")
-    else
-      false
-    end
-  end
-
-  def remove_book_from_calibre_library(book_id)
-    if OS.mac?
-      system("/Applications/calibre.app/Contents/MacOS/calibredb remove #{book_id} --library-path #{calibre_path}")
-    elsif OS.linux?
-      system("calibredb remove #{book_id} --library-path #{calibre_path}")
-    else
-      false
-    end
   end
 
   def book_path(book_file)
